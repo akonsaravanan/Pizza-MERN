@@ -1,0 +1,88 @@
+/* https: //res.cloudinary.com/sara93/image/upload/v1661587448/pizza%20mern/pngwing.com_1_zdozhu.png */
+
+
+.CartPageWrapper {
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden !important;
+    margin: 0 auto !important;
+    margin-top: 100px !important;
+    padding: 0 35px;
+    display: flex;
+    /* align-items: center; */
+    justify-content: space-evenly;
+}
+
+.CartPageOrderSummaryContainer {
+    background-color: rgb(255, 253, 253);
+    color: rgb(37, 35, 35);
+    display: flex;
+    flex-direction: column;
+    padding: 10px 50px;
+    font-size: 1rem;
+    font-weight: 700;
+    gap: 10px;
+    border-radius: 15px;
+    box-shadow: -14px 12px 32px 16px rgb(0 0 0 / 10%)
+}
+
+.CartPageOrderSummary {
+    display: flex;
+    align-items: center;
+    /* justify-content: space-around !important; */
+
+}
+
+.OrderLabel {
+    justify-self: flex-start;
+}
+
+.OrderValue {
+    margin-left: auto !important;
+}
+
+.CartPageProductSummaryLabelProduct {
+
+    width: 150px !important;
+}
+
+/* d-flex justify-content-around */
+.CartProductsSection {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.CartPageProductSummaryLabelProduct img {
+    width: 100%;
+    display: inline-block;
+}
+
+.CartPageInfo {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 100px;
+    margin: 0px auto !important;
+
+}
+
+.columnRight {
+    min-width: 300px !important;
+}
+
+.Addons {
+    max-width: 200px !important;
+}
+
+@media screen and (max-width: 950px) {
+    .CartPageWrapper {
+        flex-direction: column !important;
+        justify-content: center !important;
+    }
+
+    .CartPageOrderSummaryContainer {
+        width: 400px;
+        margin: 0 auto !important;
+    }
+}

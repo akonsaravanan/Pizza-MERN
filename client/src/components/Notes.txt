@@ -1,0 +1,473 @@
+https://codepen.io/jagjeetkhalsa/pen/yjjKKj -  pizza spinners
+https://codemyui.com/cheesy-pizza-loader/ -  pizza spinners
+https://alvarotrigo.com/blog/10-cool-css-animations-to-add-to-your-website/ -  some usefull layout Animations
+import React, { useEffect, useState } from "react";
+import styles from "../styles/PizzaList.module.css";
+import Tooltip from "@mui/material/Tooltip";
+import IconButton from "@mui/material/IconButton";
+import Button from "@mui/material/Button";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import { TbPizzaOff, TbPizza } from "react-icons/tb";
+import { FaRupeeSign, FaAngleDoubleRight } from "react-icons/fa";
+import { BiFoodTag } from "react-icons/bi";
+import TextField from "@mui/material/TextField";
+
+export const PizzaCard = ({ pizza }) => {
+	const [Type, setType] = useState("Regular");
+	const [qty, setQty] = useState(1);
+
+	const handleChange = (event) => {
+		setType("");
+		setType(event.target.value);
+	};
+	const priceCalculation = (prices) => {
+		const Amount = prices
+			.filter((priceCal) => priceCal.variant === Type)
+			.map((data) => data.price * qty)
+			.join();
+		return Amount;
+	};
+
+	useEffect(() => {}, [qty, Type]);
+
+	return (
+		// <div class="cols col-md-2 col-lg-4 pizzaComp">
+		<div
+			class="cols card col-sm-2 col-md-4 pizzaComp mx-auto"
+			style={{ width: "350px", maxHeight: "400px", marginBottom: "40px", objectFit: "cover" }}
+		>
+			<div className={styles.pizzaImageContainer}>
+				<img src={pizza.image} class="card-img-top" width="100%" height="100%" />
+			</div>
+			<span className={styles.VorNV}>
+				{pizza.category === "veg" ? (
+					<i class="bx bx-food-tag" style={{ color: "#0ac01c" }}></i>
+				) : (
+					<i class="bx bx-food-tag" style={{ color: "#f02206" }}></i>
+				)}
+			</span>
+			<div class="card-body">
+				<h5 class="card-title">{pizza.name}</h5>
+				<p class="card-text text-muted" style={{ fontSize: "13px" }}>
+					{pizza.description}
+				</p>
+				<div className={styles.detailedSpecs}>
+					<span>
+						<FormControl sx={{ width: 100 }} size="small">
+							<InputLabel id="demo-select-small">Variant</InputLabel>
+							<Select
+								labelId="demo-select-small"
+								id="demo-select-small"
+								value={Type}
+								label="Variant"
+								onChange={handleChange}
+								required
+							>
+								{pizza.varients.map((type) => (
+									<MenuItem value={type}>{type}</MenuItem>
+								))}
+							</Select>
+						</FormControl>
+					</span>
+					<span className={styles.Qtycontainer}>
+						<Tooltip title="Add" placement="top">
+							<IconButton>
+								<TbPizza
+									size={25}
+									style={{ cursor: "pointer" }}
+									color="blue"
+									onClick={() => setQty((prev) => prev + 1)}
+								/>
+							</IconButton>
+						</Tooltip>
+
+						<TextField
+							id="outlined-basic"
+							variant="outlined"
+							size="small"
+							style={{ width: "45px" }}
+							label="Qty"
+							value={qty}
+							onChange={(e) => setQty(e.target.value)}
+							type="text"
+						/>
+						<Tooltip title="Remove" placement="top">
+							<IconButton>
+								<TbPizzaOff
+									size={25}
+									style={{ cursor: "pointer" }}
+									color="black"
+									onClick={() => (qty > 1 ? setQty((prev) => prev - 1) : null)}
+								/>
+							</IconButton>
+						</Tooltip>
+					</span>
+				</div>
+				<div className={styles.priceContainer}>
+					<span style={{ fontSize: "2rem" }}>
+						<FaRupeeSign />
+						{priceCalculation(pizza.prices)}
+					</span>
+					<span>
+						<Button variant="contained" size="small" endIcon={<FaAngleDoubleRight />}>
+							Add
+						</Button>
+					</span>
+				</div>
+			</div>
+		</div>
+	);
+};
+
+//
+//
+
+
+
+
+
+import React, { useEffect, useState } from "react";
+import styles from "../styles/PizzaList.module.css";
+import Tooltip from "@mui/material/Tooltip";
+import IconButton from "@mui/material/IconButton";
+import Button from "@mui/material/Button";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import { TbPizzaOff, TbPizza } from "react-icons/tb";
+import { FaRupeeSign, FaAngleDoubleRight } from "react-icons/fa";
+import { BiFoodTag } from "react-icons/bi";
+import TextField from "@mui/material/TextField";
+import Checkbox from "@mui/material/Checkbox";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormGroup from "@mui/material/FormGroup";
+import Box from "@mui/material/Box";
+import FormLabel from "@mui/material/FormLabel";
+
+export const PizzaCard = ({ pizza }) => {
+	const crustData = [
+		{
+			name: "Fresh Pan",
+			Price: 50,
+		},
+		{
+			name: "Cheese Burst",
+			Price: 100,
+		},
+		{
+			name: "Thin Crust",
+			Price: 100,
+		},
+		{
+			name: "New Hand Tossed",
+			Price: 120,
+		},
+		{
+			name: "Classic Hand Tossed",
+			Price: 100,
+		},
+	];
+	const toppingsData = [
+		{
+			name: "Normal",
+			Price: 10,
+		},
+		{
+			name: "Grilled Mushrooms",
+			Price: 50,
+		},
+		{
+			name: "Onion",
+			Price: 100,
+		},
+		/* {
+			name: "Crisp Capsicum",
+			Price: 100,
+		},
+		{
+			name: "Fresh Tomato",
+			Price: 120,
+		},
+		{
+			name: "Panner",
+			Price: 100,
+		},
+		{
+			name: "Red Pepper",
+			Price: 100,
+		},
+		{
+			name: "Jalapeno",
+			Price: 100,
+		},
+		{
+			name: "Black Olive",
+			Price: 100,
+		}, */
+	];
+	const [Type, setType] = useState("Regular");
+	const [amount, setAmount] = useState(0);
+	const [qty, setQty] = useState(1);
+	const [crust, setCrust] = useState("Fresh Pan");
+	const [toppingsAmount, setToppingsAmount] = useState(10);
+	const [toppingOption, setToppingOption] = useState({
+		Normal: true,
+		"Grilled Mushrooms": false,
+		Onion: false,
+	});
+
+	const handleChange = (event) => {
+		setType("");
+		setType(event.target.value);
+	};
+	const handleChangeCrust = (event) => {
+		setCrust("");
+		setCrust(event.target.value);
+	};
+	const handleChangeToppings = (event, toppigPrice) => {
+		setToppingOption({
+			...toppingOption,
+			[event.target.name]: event.target.checked,
+		});
+		if (event.target.checked) {
+			setToppingsAmount(toppingsAmount + toppigPrice);
+		}
+		if (!event.target.checked) {
+			setToppingsAmount(toppingsAmount - toppigPrice);
+		}
+
+		console.log(toppingsAmount);
+	};
+	const priceCalculation = (prices, CurrentType) => {
+		const Amount = prices
+			.filter((priceCal) => priceCal.variant === CurrentType)
+			.map((data) => data.price * qty)
+			.join();
+		return Amount;
+	};
+	const crustCalculation = () => {
+		const Amount = crustData
+			.filter((crustItem) => crustItem.name === crust)
+			.map((data) => data.Price * qty)
+			.join();
+		// console.log(Amount);
+		return Amount;
+	};
+
+	useEffect(() => {
+		const temp =
+			Number(priceCalculation(pizza.prices, Type)) + Number(crustCalculation()) + toppingsAmount;
+		setAmount(temp);
+	}, [qty, Type, amount, crust, toppingsAmount]);
+
+	return (
+		<div
+			class="cols card col-sm-2 col-md-4 pizzaComp mx-auto"
+			style={{ width: "350px", maxHeight: "400px", marginBottom: "40px", objectFit: "cover" }}
+		>
+			<div className={styles.pizzaImageContainer}>
+				<img src={pizza.image} class="card-img-top" width="100%" height="100%" />
+			</div>
+			<span className={styles.VorNV}>
+				{pizza.category === "veg" ? (
+					<i class="bx bx-food-tag" style={{ color: "#0ac01c" }}></i>
+				) : (
+					<i class="bx bx-food-tag" style={{ color: "#f02206" }}></i>
+				)}
+			</span>
+			<div class="card-body">
+				<h5 class="card-title">{pizza.name}</h5>
+				<p class="card-text text-muted" style={{ fontSize: "13px" }}>
+					{pizza.description}
+				</p>
+				<div className={styles.detailedSpecs}>
+					<div style={{ display: "flex", alignItems: "center", gap: "40px" }}>
+						<span>
+							<FormControl sx={{ width: 100 }} size="small">
+								<InputLabel id="demo-select-small">Size</InputLabel>
+								{/* <TextField select SelectProps={{ MenuProps: { disableScrollLock: true } }} /> */}
+								<Select
+									labelId="demo-select-small"
+									id="demo-select-small"
+									value={Type}
+									label="Variant"
+									onChange={(e) => handleChange(e, pizza.prices, Type)}
+									required
+								>
+									{pizza.varients.map((type) => (
+										<MenuItem disableScrollLock={true} value={type}>
+											{type}
+										</MenuItem>
+									))}
+								</Select>
+							</FormControl>
+						</span>
+						<span>
+							{/* <FormControl sx={{ width: 170 }} size="small">
+								<InputLabel id="demo-select-small2">Crust</InputLabel>
+								<Select
+									labelId="demo-select-small2"
+									id="demo-select-small2"
+									value={crust}
+									label="Variant"
+									onChange={handleChangeCrust}
+									required
+								>
+									{crustData.map((crustType) => (
+										<MenuItem value={crustType.name} disableScrollLock={true}>
+											<>
+												{crustType.name} &nbsp;₹{crustType.Price}
+											</>
+										</MenuItem>
+									))}
+								</Select>
+							</FormControl> */}
+						</span>
+					</div>
+					<div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+						<span>
+							{/* <FormControl sx={{ width: 170 }} size="small">
+								<InputLabel id="demo-select-small3">Toppings</InputLabel>
+								<Select
+									labelId="demo-select-small3"
+									id="demo-select-small3"
+									label="Variant"
+									required="true"
+								>
+									{toppingsData.map((toppingType) => (
+										<FormControlLabel
+											className="mx-2"
+											style={{
+												display: "flex",
+												// flexDirection: "column",
+												alignItems: "center",
+												// gap: "10px",
+											}}
+											label={
+												<>
+													{toppingType.name} &nbsp; ₹{toppingType.Price}
+												</>
+											}
+											control={
+												<Checkbox
+													checked={toppingOption[toppingType.name]}
+													onChange={(event) => handleChangeToppings(event, toppingType.Price)}
+													name={toppingType.name}
+												/>
+											}
+										/>
+									))}
+								</Select>
+							</FormControl> */}
+						</span>
+
+						{/* <span className={styles.Qtycontainer}>
+							<Tooltip title="Add" placement="top">
+								<IconButton>
+									<TbPizza
+										size={25}
+										style={{ cursor: "pointer" }}
+										color="blue"
+										onClick={() => setQty((prev) => prev + 1)}
+									/>
+								</IconButton>
+							</Tooltip>
+
+							<TextField
+								id="outlined-basic"
+								variant="outlined"
+								size="small"
+								style={{ width: "45px" }}
+								label="Qty"
+								value={qty}
+								onChange={(e) => setQty(e.target.value)}
+								type="text"
+							/>
+							<Tooltip title="Remove" placement="top">
+								<IconButton>
+									<TbPizzaOff
+										size={25}
+										style={{ cursor: "pointer" }}
+										color="black"
+										onClick={() => (qty > 1 ? setQty((prev) => prev - 1) : null)}
+									/>
+								</IconButton>
+							</Tooltip>
+						</span> */}
+					</div>
+				</div>
+				<div className={styles.priceContainer}>
+					<span style={{ fontSize: "2rem" }}>
+						<FaRupeeSign />
+						{amount}
+						{/* {priceCalculation(pizza.prices)} */}
+					</span>
+					{/* <span>
+						<Button variant="contained" size="small" endIcon={<FaAngleDoubleRight />}>
+							Add
+						</Button>
+					</span> */}
+				</div>
+			</div>
+		</div>
+	);
+};
+
+//
+//
+<div class="row  mx-auto">
+						<div
+							class="cols col-md-6   col-lg-8 d-flex flex-column gap-5"
+							style={{ fontWeight: "700" }}
+						>
+							<div class="d-flex justify-content-around">
+								<span className={styles.CartPageProductSummaryLabelProduct}>Product</span>
+								<span className={styles.CartPageProductSummaryLabelTitle}>Title</span>
+								<span className={styles.CartPageProductSummaryLabelCustomized}>Customized</span>
+								<span className={styles.CartPageProductSummaryLabelPrice}>Price</span>
+								<span className={styles.CartPageProductSummaryLabelQuantity}>Quantity</span>
+								<span className={styles.CartPageProductSummaryLabelTotal}>Total</span>
+							</div>
+							{pizzas.map((pizza) => (
+								<div class="d-flex justify-content-around">
+									<span className={styles.CartPageProductSummaryLabelProduct}>
+										<img src={pizza.image} />
+									</span>
+									<span className={styles.CartPageProductSummaryLabelTitle}>{pizza.name}</span>
+									<span className={styles.CartPageProductSummaryLabelCustomized}>Customized</span>
+									<span className={styles.CartPageProductSummaryLabelPrice}>Price</span>
+									<span className={styles.CartPageProductSummaryLabelQuantity}>Quantity</span>
+									<span className={styles.CartPageProductSummaryLabelTotal}>Total</span>
+								</div>
+							))}
+						</div>
+
+						<div class="cols col-md-6 col-lg-4">
+							<div className={styles.CartPageOrderSummaryContainer}>
+								<h3 class="text-center">Bucket Value</h3>
+								<div className={styles.CartPageOrderSummary}>
+									<span className={styles.OrderLabel}>Sub Total</span>
+									<span className={styles.OrderValue}> $200</span>
+								</div>
+								<div className={styles.CartPageOrderSummary}>
+									<span className={styles.OrderLabel}>Delivery</span>
+									<span className={styles.OrderValue}> $200</span>
+								</div>
+								<div className={styles.CartPageOrderSummary}>
+									<span className={styles.OrderLabel}>Tax</span>
+									<span className={styles.OrderValue}> $200</span>
+								</div>
+								<div className={styles.CartPageOrderSummary}>
+									<span className={styles.OrderLabel}>Total</span>
+									<span className={styles.OrderValue}>$200</span>
+								</div>
+								<MDBBtn size="lg" className="my-3">
+									Place Order
+								</MDBBtn>
+							</div>
+						</div>
+					</div>

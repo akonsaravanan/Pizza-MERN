@@ -1,0 +1,123 @@
+ * {
+     /* margin: 0;
+     padding: 0;
+     box-sizing: border-box; */
+     /* overflow: hidden !important; */
+ }
+
+ .footerContainer {
+     max-width: 100vw;
+     /* height: auto !important; */
+     background-color: blue;
+     color: #fff;
+     overflow-x: hidden !important;
+     font-size: 1rem;
+     padding: 0.5rem;
+     position: relative !important;
+     bottom: 0 !important;
+
+ }
+
+ .footerAddressCards {
+     display: flex;
+     flex-direction: column;
+     align-items: flex-start;
+
+ }
+
+ .footerMoto {
+     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+     font-size: 1rem;
+     font-weight: 900;
+     color: yellow;
+     text-transform: uppercase;
+ }
+
+ .footerMoto span {
+     font-size: 3rem;
+     font-weight: 900;
+ }
+
+ .footerAddressCards {
+     display: flex;
+     flex-direction: column;
+     align-items: flex-start;
+     /* gap:20px; */
+ }
+
+ .footerAddressCards:hover {
+     color: yellow;
+     cursor: pointer;
+ }
+
+ .footerImageLogo {
+     width: 250px !important;
+     height: 250px !important;
+     color: #fff !important;
+     object-fit: cover !important;
+     overflow: hidden !important;
+     animation-name: rotate !important;
+     animation-iteration-count: infinite !important;
+     transition: all ease-in-out !important;
+     animation-duration: 1.5s !important;
+ }
+
+ .footerImgSection {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+ }
+
+ .SpinnerComponent {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     margin: 100px auto !important;
+     z-index: 999;
+     /* width: 30px;
+     height: 30px; */
+ }
+
+
+
+ @keyframes rotate {
+     /* 0% {
+         transform: rotate(0);
+     } */
+
+     100% {
+         transform: rotate(360deg);
+     }
+ }
+
+
+ .footerImageLogo {
+
+
+     width: 250px !important;
+     height: 250px !important;
+     object-fit: cover !important;
+ }
+
+ .footerCopy {
+     text-align: center !important;
+     font-size: 12px;
+     font-weight: 500;
+ }
+
+ .socialContainer {
+     display: flex;
+     align-items: center;
+     justify-content: flex-start;
+ }
+
+ .socialIcon {
+     margin-right: 10px;
+     width: 40px;
+     height: 40px;
+     border-radius: 50%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     cursor: pointer;
+ }

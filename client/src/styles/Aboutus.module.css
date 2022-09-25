@@ -1,0 +1,10 @@
+.menuImageContainer {
+    background-size: contain;
+    background-position: center !important;
+    width: 100%;
+    height: auto !important;
+    margin: 50px auto !important;
+    display: flex ! important;
+    justify-content: center;
+
+}

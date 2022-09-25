@@ -1,0 +1,323 @@
+.container {
+    max-width: 100vw !important;
+    min-height: 100vh !important;
+    /* margin-top: 53.1px !important; */
+    position: relative;
+}
+
+.LeftarrowContainer,
+.RightarrowContainer {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    cursor: pointer;
+
+}
+
+.LeftarrowContainer {
+    left: 0;
+    top: 50vh;
+}
+
+.RightarrowContainer {
+    right: 0;
+    top: 50vh;
+}
+
+.sliderContent img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-position: cover;
+}
+
+.sliderContent {
+    max-width: 100vw;
+    max-height: 100%;
+    object-fit: cover;
+    background-position: cover;
+}
+
+.NavOfferImageContainer {
+    position: relative !important;
+    display: block !important;
+    margin: 0 auto !important;
+    z-index: 0;
+    /* height: 100vh; */
+    /* overflow-x: hidden !important; */
+}
+
+.offerImage {
+    position: absolute !important;
+    top: 55px !important;
+    left: 5px !important;
+    z-index: 999 !important;
+    overflow: hidden !important;
+    display: block !important;
+    margin: 0 auto !important;
+}
+
+.HeroBackground {
+    background-image: url(https://res.cloudinary.com/sara93/image/upload/v1661274719/pizza%20mern/47_x0hoyn.png);
+    /* background-image: url(https://res.cloudinary.com/sara93/image/upload/v1661274717/pizza%20mern/44_lt7y72.png); */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100% !important;
+    height: 100vh !important;
+    /* object-fit: fill !important; */
+    /* opacity: 0.9; */
+    background-color: black !important;
+    animation-name: rotate;
+    animation-duration: 10s !important;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    transition: all ease-in-out !important;
+    animation-direction: alternate;
+}
+
+.HeroContentImage {
+
+    display: flex !important;
+    align-items: center;
+    justify-content: center !important;
+    margin: 0 auto !important;
+    object-fit: fill;
+}
+
+.HeroContentImageTomato {
+    max-width: 500px;
+    max-height: 500px;
+    object-fit: fill;
+    top: 150vh;
+    position: absolute !important;
+    animation-name: float3 !important;
+    animation-iteration-count: infinite !important;
+    transition: all ease-in-out !important;
+    /* animation-direction: alternate; */
+    animation-duration: 9s !important;
+    /* z-index: -1; */
+}
+
+
+.HeroContentImageChilly {
+    max-width: 500px;
+    max-height: 500px;
+    object-fit: fill;
+    position: absolute !important;
+    top: 280vh;
+    /* transform: translateX(-40%); */
+    animation-name: float3 !important;
+    animation-iteration-count: infinite !important;
+    transition: all ease-in-out !important;
+    /* animation-direction: alternate; */
+    animation-duration: 9s !important;
+    /* z-index: -1; */
+}
+
+.HeroContentImageOnion {
+    max-width: 500px;
+    max-height: 500px;
+    object-fit: fill;
+    position: absolute !important;
+    top: 220vh;
+    /* transform: translateX(-40%); */
+    animation-name: float3 !important;
+    animation-iteration-count: infinite !important;
+    transition: all ease-in-out !important;
+    /* animation-direction: alternate; */
+    animation-duration: 9s !important;
+    /* z-index: -1; */
+}
+
+@keyframes float3 {
+    0% {
+        transform: rotate3d(0deg);
+        transform: rotate3d(0deg);
+        transition: all ease-in-out !important;
+    }
+
+
+    25% {
+        transform: rotate3d(90deg);
+        transform: rotate3d(90deg);
+        transition: all ease-in-out !important;
+    }
+
+    50% {
+        transform: rotateX(180deg);
+        transform: rotateY(180deg);
+        transition: all ease-in-out !important;
+    }
+
+    75% {
+        transform: rotateX(260deg);
+        transform: rotateY(260deg);
+        transition: all ease-in-out !important;
+    }
+
+    100% {
+        transform: rotateX(360deg);
+        transform: rotateY(360deg);
+        transition: all ease-in-out !important;
+    }
+
+
+}
+
+.HeroContentImagePizza {
+    max-width: 500px;
+    max-height: 500px;
+    object-fit: fill;
+    position: absolute !important;
+    transform: translateY(-40%);
+    animation-name: float !important;
+    animation-iteration-count: infinite !important;
+    transition: all ease-in-out !important;
+    animation-direction: alternate;
+    animation-duration: 6s !important;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(-50%);
+        transition: all ease-in-out !important;
+    }
+
+    100% {
+        transform: translateY(-80%);
+        transition: all ease-in-out !important;
+    }
+}
+
+.HeroContentImageSmoke {
+    max-width: 500px;
+    max-height: 500px;
+    opacity: 0.6;
+    object-fit: fill;
+    position: absolute !important;
+    transform: translateY(-90%);
+    animation-name: float2 !important;
+    animation-iteration-count: infinite !important;
+    transition: all ease-in-out !important;
+    animation-direction: alternate;
+    animation-duration: 6s !important;
+
+}
+
+@keyframes float2 {
+    0% {
+        transform: translateY(-50%);
+        transition: all ease-in-out !important;
+    }
+
+    100% {
+        transform: translateY(-100%);
+        transition: all ease-in-out !important;
+    }
+}
+
+@keyframes rotate {
+
+    from {
+        background-position: 0px 0px;
+    }
+
+    to {
+        background-position: cover 250px;
+    }
+
+    from {
+        background-position: 0px 0px;
+    }
+
+    to {
+        background-position: cover 500px;
+    }
+
+
+}
+
+/* .animationContainer {
+    color: #999;
+    text-transform: uppercase;
+    font-size: 36px;
+    font-weight: bold;
+    padding-top: 200px;
+    position: fixed;
+    width: 100%;
+    bottom: 45%;
+    display: block;
+}
+
+.animationflip {
+    height: 50px;
+    overflow: hidden;
+}
+
+.animationflip>div>div {
+    color: #fff;
+    padding: 4px 12px;
+    height: 45px;
+    margin-bottom: 45px;
+    display: inline-block;
+}
+
+.animationflip div:first-child {
+    animation: show 5s linear infinite;
+}
+
+.animationflip div div {
+    background: #42c58a;
+}
+
+.animationflip div:first-child div {
+    background: #4ec7f3;
+}
+
+.animationflip div:last-child div {
+    background: #DC143C;
+}
+
+@keyframes show {
+    0% {
+        margin-top: -270px;
+    }
+
+    5% {
+        margin-top: -180px;
+    }
+
+    33% {
+        margin-top: -180px;
+    }
+
+    38% {
+        margin-top: -90px;
+    }
+
+    66% {
+        margin-top: -90px;
+    }
+
+    71% {
+        margin-top: 0px;
+    }
+
+    99.99% {
+        margin-top: 0px;
+    }
+
+    100% {
+        margin-top: -270px;
+    }
+}
+
+p {
+    position: fixed;
+    width: 100%;
+    bottom: 30px;
+    font-size: 12px;
+    color: #999;
+    margin-top: 200px;
+} */

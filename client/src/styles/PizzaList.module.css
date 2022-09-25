@@ -1,0 +1,91 @@
+.pizzaCardWrapper {
+    /* overflow-x: hidden !important; */
+    width: 85vw;
+    min-height: 100vh !important;
+    margin: auto !important;
+    z-index: 0;
+
+}
+
+.pizzaImageContainer {
+    width: 100%;
+    height: 140px !important;
+}
+
+.detailedSpecs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+
+.Qtycontainer {
+    display: flex;
+    align-items: center;
+    gap: 1px;
+}
+
+.priceContainer {
+    font-weight: 900;
+    font-size: 2rem;
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* gap: 5px; */
+    color: rgb(41, 33, 33);
+
+}
+
+.priceContainer {
+    position: absolute !important;
+    left: 10px;
+    top: 70px;
+    color: #fff;
+    border-radius: 5px;
+    z-index: 0;
+    box-shadow: 14px 7px 40px -2.1px rgb(66 65 64);
+
+}
+
+
+.pizzaComp {
+    position: relative !important;
+}
+
+.VorNV i {
+    position: absolute !important;
+    top: 5px;
+    right: 20px;
+    background-color: #fff !important;
+    height: 18px;
+    font-size: 1.2rem;
+
+}
+
+.productsImageWrapper {
+    /* display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    align-items: center; */
+    display: flex ! important;
+    align-items: center !important;
+    justify-content: space-between ! important;
+    margin: 0 6rem;
+}
+
+@media screen and (max-width:1000px) {
+
+    .productsImageWrapper {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 40px !important
+    }
+
+    .productsImageWrapper:nth-child(even) {
+        flex-direction: column-reverse !important;
+    }
+
+
+}

@@ -1,0 +1,155 @@
+/*
+https: //res.cloudinary.com/sara93/image/upload/v1660899149/pizza%20mern/paid_a9ehsh.png
+https: //res.cloudinary.com/sara93/image/upload/v1660899147/pizza%20mern/bake_frvlwl.png
+https: //res.cloudinary.com/sara93/image/upload/v1660899147/pizza%20mern/bike_fgdtum.png
+https: //res.cloudinary.com/sara93/image/upload/v1660899148/pizza%20mern/delivered_qnk6th.png
+https: //res.cloudinary.com/sara93/image/upload/v1660899148/pizza%20mern/checked_wti96g.png
+https: //res.cloudinary.com/sara93/image/upload/v1661151000/pizza%20mern/11_vztpe0.png
+https: //res.cloudinary.com/sara93/image/upload/v1661585558/pizza%20mern/17_it2ui8.png
+*/
+
+
+.TrackMyOrderContainer {
+    width: 100% !important;
+    min-height: 100vh;
+    margin: 0 auto;
+    overflow-x: hidden !important;
+    position: relative !important;
+    margin-top: 100px !important;
+}
+
+.orderDetailContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around !important;
+    margin-top: 70px;
+    margin-bottom: 70px;
+    gap: 50px;
+}
+
+.orderSummary,
+.orderDeliveryAddress {
+    width: 500px;
+}
+
+.orderTrackingCard {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    /* flex-direction: column; */
+    margin-top: 50px;
+}
+
+.CartPageOrderSummaryContainer {
+    background-color: rgb(255, 253, 253);
+    color: rgb(37, 35, 35);
+    display: flex;
+    flex-direction: column;
+    padding: 10px 50px;
+    font-size: 1rem;
+    font-weight: 700;
+    gap: 10px;
+    border-radius: 15px;
+    box-shadow: -14px 12px 32px 16px rgb(0 0 0 / 10%)
+}
+
+.CartPageOrderSummary {
+    display: flex;
+    align-items: center;
+    /* justify-content: space-around !important; */
+
+}
+
+.OrderLabel {
+    justify-self: flex-start;
+}
+
+.OrderValue {
+    margin-left: auto !important;
+}
+
+.trackingStatus {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    /* gap: 5px; */
+}
+
+.trackingStatus span {
+    font-weight: 500;
+    font-size: 1.2rem;
+}
+
+.done {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.inProgress {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    animation-name: inProgress;
+    animation-duration: 1s !important;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    transition: 1s all ease-in-out !important;
+    animation-direction: alternate;
+}
+
+@keyframes inProgress {
+    0% {
+        opacity: 0;
+        transition: 1s all ease-in-out !important;
+    }
+
+    100% {
+        opacity: 0.8;
+        transition: 1s all ease-in-out !important;
+    }
+}
+
+.unDone {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0.09;
+}
+
+
+.unDone .trackingStatusChecked,
+.inProgress .trackingStatusChecked {
+
+    display: none !important;
+
+}
+
+@media screen and (max-width:800px) {
+
+    .orderDetailContainer,
+    .orderTrackingCard {
+        flex-direction: column;
+        gap: 50px;
+        justify-content: center;
+        margin: 50px 50px !important;
+    }
+
+    .orderSummary,
+    .orderDeliveryAddress {
+        max-width: 400px;
+    }
+}
+
+.myOrderContainer {
+    width: 100%;
+    min-height: 100vh;
+}
+
+.myOrderCardTable {
+    height: 500px !important;
+}
