@@ -12,9 +12,19 @@ import CartPage from "./pages/CartPage";
 import PizzaDetail from "./pages/PizzaDetail";
 import { MyOrder } from "./pages/MyOrder";
 import { ToastContainer } from "react-toastify";
+import { useSelector, useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { setUserLogin } from "./redux/authSlice";
+
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
+	const dispatch = useDispatch();
+	const user = JSON.parse(localStorage.getItem("userPizza-profile"));
+
+	useEffect(() => {
+		dispatch(setUserLogin(user));
+	}, []);
 	return (
 		<BrowserRouter>
 			<div className="App">

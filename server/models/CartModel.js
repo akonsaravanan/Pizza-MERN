@@ -7,7 +7,7 @@ const cartInfo = mongoose.Schema({
 	description: { type: String, required: true },
 	quantity: { type: Number, required: true },
 	Type: { type: String },
-	crust: { type: String },
+	crust: { type: Array },
 	toppings: { type: Array },
 	price: { type: Number },
 	total: { type: Number },

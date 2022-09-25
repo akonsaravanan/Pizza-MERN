@@ -13,11 +13,13 @@ import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import { useSelector, useDispatch } from "react-redux";
 import { MDBBtn } from "mdb-react-ui-kit";
-import { addProductToCart } from "../redux/cartSlice";
+import { addCart, addProductToCart } from "../redux/cartSlice";
 import { toast } from "react-toastify";
+// import { createCart } from "../redux/api";
 
 export const PizzaCard = ({ pizza }) => {
-	// console.log(pizza);
+	const { user } = useSelector((state) => ({ ...state.auth }));
+	// console.log(user);
 	const dispatch = useDispatch();
 	const crustData = [
 		// {
@@ -91,20 +93,25 @@ export const PizzaCard = ({ pizza }) => {
 		Normal: true,
 	});
 	const postProduct = {
+		userId: user && user?.data?._id,
 		name: pizza.name,
 		image: pizza.image,
 		description: pizza.description,
-		quantity: pizza.qty,
+		quantity: qty,
 		Type: Type,
 		crust: crust,
 		toppings: toppingOption,
-		price: pizza.price,
+		price: amount,
 		total: amount,
 		status: "inprogress",
 	};
-	const handleAddToCart = (cart) => {
-		dispatch(addProductToCart(postProduct));
-		toast.info("Product added successfully");
+	const handleAddToCart = () => {
+		if (user) {
+			dispatch(addProductToCart(postProduct));
+			dispatch(addCart({ postProduct, toast }));
+		} else {
+			toast.error("Login to proceed");
+		}
 	};
 
 	const handleChange = (event) => {
@@ -127,7 +134,7 @@ export const PizzaCard = ({ pizza }) => {
 			setToppingsAmount(toppingsAmount - toppigPrice);
 		}
 
-		console.log(toppingsAmount);
+		// console.log(toppingsAmount);
 	};
 	const priceCalculation = (prices, CurrentType) => {
 		const Amount = prices
@@ -314,13 +321,8 @@ export const PizzaCard = ({ pizza }) => {
 					</span>
 				</div>
 
-				<div className="mt-3 d-flex justify-content-end">
-					<MDBBtn
-						variant="contained"
-						size="sm"
-						style={{ fontWeight: "500" }}
-						onClick={handleAddToCart}
-					>
+				<div className="mt-3 d-flex justify-content-end" onClick={handleAddToCart}>
+					<MDBBtn variant="contained" size="sm" style={{ fontWeight: "500" }}>
 						Add To Cart
 					</MDBBtn>
 				</div>

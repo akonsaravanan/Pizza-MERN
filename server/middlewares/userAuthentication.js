@@ -7,7 +7,7 @@ const authenticateUser = async (req, res, next) => {
 			req.user = decodedToken;
 			next();
 			console.log("TOKEN VALID");
-			// console.log(req.user);
+			console.log(req.user);
 		} else {
 			res.status(403).json("You are not allowed to do this , Token INVALID");
 		}

@@ -12,6 +12,7 @@ import styles from "../styles/Navbar.module.css";
 import { MenuItems } from "./MenuItems";
 import { useSelector, useDispatch } from "react-redux";
 import { setUserLogout, setUserLogin } from "../redux/authSlice";
+import { inCart } from "../redux/cartSlice";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -35,10 +36,17 @@ const Navbar = () => {
 		console.log(accessIn);
 	}, [accessIn]);
 
+	useEffect(() => {
+		const extUser = localStorage.getItem("userPizza-profile");
+		if (extUser) {
+			dispatch(inCart());
+		}
+	}, []);
+
 	const handleLogout = () => {
 		dispatch(setUserLogout());
 		toast.success("Logged out successfully");
-		navigate("/home");
+		navigate("/signupin");
 		setaccessIn(false); // navigate("/home");
 	};
 
@@ -123,13 +131,14 @@ const Navbar = () => {
 									</a>
 								</li>
 							)}
-
-							<li className={styles.cartIcon} href="#">
-								<a href="/cartPage">
-									<FaOpencart />
-									<span className={styles.cartCounter}>{quantityState && quantityState}</span>
-								</a>
-							</li>
+							{accessIn && (
+								<li className={styles.cartIcon} href="#">
+									<a href="/cartPage">
+										<FaOpencart />
+										<span className={styles.cartCounter}>{quantityState && quantityState}</span>
+									</a>
+								</li>
+							)}
 						</>
 					}
 				</ul>

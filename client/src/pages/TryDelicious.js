@@ -7,7 +7,6 @@ const TryDelicious = () => {
 	return (
 		<div>
 			<Navbar />
-			<h3>TryDelicious</h3>
 			<PizzaList />
 			<Footer />
 		</div>

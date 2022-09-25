@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 
 export const PizzaList = () => {
 	const allProductsState = useSelector((state) => ({ ...state.allProducts }));
+	const cartLoading = useSelector((state) => ({ ...state.cart }));
 	const { allProducts, loading } = allProductsState;
 	const dispatch = useDispatch();
 	const [spin, setSpin] = useState(true);
@@ -24,8 +25,8 @@ export const PizzaList = () => {
 	}, []);
 	return (
 		<>
-			<h3 class="text-center my-5">Our Signature Products</h3>
-			{spin ? (
+			<h3 class="text-center py-5 my-3">Our Signature Products</h3>
+			{loading || cartLoading.loading ? (
 				<Spinner />
 			) : (
 				<div className={styles.pizzaCardWrapper}>

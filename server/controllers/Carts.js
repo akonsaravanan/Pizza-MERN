@@ -16,6 +16,25 @@ const createCart = async (req, res) => {
 	}
 };
 
+const getInCartItems = async (req, res) => {
+	try {
+		const CartHistory = await cartModel.find({ userId: req.user.id });
+		const inCart = CartHistory.filter((item) => item.status === "inprogress");
+		console.log(inCart);
+		res.status(200).json({
+			message: "IN Cart  fetched successfully",
+			results: inCart.length,
+			data: inCart,
+		});
+	} catch (error) {
+		return res.status(404).json({
+			status: "Fail",
+			message: error.message,
+		});
+	}
+};
+
 module.exports = {
 	createCart,
+	getInCartItems,
 };

@@ -30,3 +30,13 @@ export const loginAccount = async (postData) => {
 	console.log(postData);
 	return response.data;
 };
+export const createCart = async (postData) => {
+	console.log(postData);
+	const response = await API.post("/carts/create", postData);
+	console.log(postData);
+	return response.data;
+};
+export const getInCartItems = async () => {
+	const response = await API.get("/carts/incart");
+	return response.data;
+};

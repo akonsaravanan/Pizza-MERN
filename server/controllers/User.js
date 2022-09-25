@@ -21,7 +21,7 @@ const signup = async (req, res) => {
 		return res.status(201).json({
 			message: "Account created successfully",
 			data: {
-				account,
+				data: account,
 				token,
 			},
 		});
@@ -66,7 +66,7 @@ const signin = async (req, res) => {
 		res.status(201).json({
 			message: "User logged in successfully",
 			data: {
-				existingUser,
+				data: existingUser,
 				token,
 			},
 		});
