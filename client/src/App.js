@@ -1,7 +1,7 @@
 import "./App.css";
 import Home from "./pages/Home";
 import About from "./pages/About";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import SignInUp from "./pages/SignInUp";
 import TryDelicious from "./pages/TryDelicious";
 import Menu from "./pages/Menu";
@@ -15,16 +15,18 @@ import { ToastContainer } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
 import React, { useState, useEffect } from "react";
 import { setUserLogin } from "./redux/authSlice";
-
 import "react-toastify/dist/ReactToastify.css";
+import Timeout from "./pages/Timeout";
+import { setUserLogout } from "./redux/authSlice";
+import jwt_decode from "jwt-decode";
 
 function App() {
 	const dispatch = useDispatch();
 	const user = JSON.parse(localStorage.getItem("userPizza-profile"));
-
 	useEffect(() => {
 		dispatch(setUserLogin(user));
 	}, []);
+
 	return (
 		<BrowserRouter>
 			<div className="App">
@@ -40,6 +42,7 @@ function App() {
 					pauseOnHover={false}
 					theme="dark"
 				/>
+
 				<Routes>
 					<Route exact path="/" element={<Home />} />
 					<Route path="/home" element={<Home />} />
@@ -54,6 +57,7 @@ function App() {
 					<Route path="/cartpage" element={<CartPage />} />
 					<Route path="/product" element={<PizzaDetail />} />
 					<Route path="/myorder" element={<MyOrder />} />
+					<Route path="/timeout" element={<Timeout />} />
 				</Routes>
 			</div>
 		</BrowserRouter>

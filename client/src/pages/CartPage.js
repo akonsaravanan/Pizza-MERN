@@ -6,37 +6,10 @@ import styles from "../styles/CartPage.module.css";
 import { MDBBadge, MDBBtn, MDBTable, MDBTableHead, MDBTableBody } from "mdb-react-ui-kit";
 
 const CartPage = () => {
-	const pizzas = [
-		{
-			name: "Margherita",
-			varient: "Regular",
-			price: 199,
-			amount: 398,
-			category: "veg",
-			crust: "Fresh Pan",
-			toppings: ["onion", "tomato", "chilly", "red pepper"],
-			quantity: 2,
-			image:
-				"https://res.cloudinary.com/sara93/image/upload/v1660899148/pizza%20mern/farmhouse_sphpul.jpg",
-			description: "Classic delight with 100% real mozzarella cheese and traditional flavours",
-		},
-		{
-			name: "Margherita",
-			varient: "Regular",
-			price: 199,
-			amount: 398,
+	const { products } = useSelector((state) => ({ ...state.cart }));
+	const toppings = products && products.map((product) => product.toppings);
+	console.log(toppings);
 
-			category: "veg",
-			crust: "Fresh Pan",
-			toppings: ["onion", "tomato", "chilly", "red pepper"],
-			quantity: 2,
-			image:
-				"https://res.cloudinary.com/sara93/image/upload/v1660899148/pizza%20mern/farmhouse_sphpul.jpg",
-			description: "Classic delight with 100% real mozzarella cheese and traditional flavours",
-		},
-	];
-	const activeCartItems = useSelector((state) => ({ ...state.cart }));
-	console.log(activeCartItems && activeCartItems);
 	return (
 		<>
 			<Navbar />
@@ -53,7 +26,7 @@ const CartPage = () => {
 						</tr>
 					</MDBTableHead>
 					<MDBTableBody>
-						{pizzas.map((pizza) => (
+						{products.map((pizza) => (
 							<tr>
 								<td>
 									<div className="d-flex align-items-center">
@@ -66,17 +39,15 @@ const CartPage = () => {
 									</div>
 								</td>
 								<td>{pizza.name}</td>
-								<td className={styles.Addons}>
-									<span>{pizza.crust}&nbsp;</span>
-									{pizza.toppings.map((topping) => (
-										<>
-											<span>{topping} &nbsp;</span>
-										</>
-									))}
+								
+								<td>
+									<span>{`${pizza.Type}, ${pizza.crust}, `}</span>
+									&nbsp;
+									<span>{pizza.toppings.map((topping) => `${topping}, `)}</span> &nbsp;
 								</td>
 								<td>{pizza.price}</td>
 								<td>{pizza.quantity}</td>
-								<td>{pizza.amount}</td>
+								<td>{pizza.total}</td>
 							</tr>
 						))}
 					</MDBTableBody>

@@ -60,7 +60,7 @@ const signin = async (req, res) => {
 			{ email: existingUser.email, id: existingUser._id },
 			process.env.secretKey,
 			{
-				expiresIn: "1hr",
+				expiresIn: "5s",
 			}
 		);
 		res.status(201).json({

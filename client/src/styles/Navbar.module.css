@@ -238,3 +238,39 @@ ul {
 
 
 }
+
+
+/* TIMEOUT PAGE  */
+
+.TimeoutContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 15% auto !important;
+}
+
+.TimeoutCard {
+    padding: 20px;
+}
+
+.TimeoutHeader {
+    font-size: 5rem;
+    color: blue;
+    background-color: yellow;
+}
+
+.TimeoutText {
+    font-size: 3rem;
+}
+
+.TimeoutTextLink {
+    font-size: 5rem;
+    color: blue;
+    background-color: yellow;
+    font-weight: 500;
+}
+
+.TimeoutTextLink:hover {
+    text-decoration: none;
+    color: blue;
+}

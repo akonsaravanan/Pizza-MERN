@@ -21,66 +21,7 @@ export const PizzaCard = ({ pizza }) => {
 	const { user } = useSelector((state) => ({ ...state.auth }));
 	// console.log(user);
 	const dispatch = useDispatch();
-	const crustData = [
-		// {
-		// 	name: "Fresh Pan",
-		// 	Price: 50,
-		// },
-		// {
-		// 	name: "Cheese Burst",
-		// 	Price: 100,
-		// },
-		// {
-		// 	name: "Thin Crust",
-		// 	Price: 100,
-		// },
-		// {
-		// 	name: "New Hand Tossed",
-		// 	Price: 120,
-		// },
-		// {
-		// 	name: "Classic Hand Tossed",
-		// 	Price: 100,
-		// },
-	];
-	const toppingsData = [
-		// {
-		// 	name: "Normal",
-		// 	Price: 10,
-		// },
-		// {
-		// 	name: "Grilled Mushrooms",
-		// 	Price: 50,
-		// },
-		// {
-		// 	name: "Onion",
-		// 	Price: 100,
-		// },
-		// {
-		// 	name: "Crisp Capsicum",
-		// 	Price: 100,
-		// },
-		// {
-		// 	name: "Fresh Tomato",
-		// 	Price: 120,
-		// },
-		// {
-		// 	name: "Panner",
-		// 	Price: 100,
-		// },
-		// {
-		// 	name: "Red Pepper",
-		// 	Price: 100,
-		// },
-		// {
-		// 	name: "Jalapeno",
-		// 	Price: 100,
-		// },
-		// {
-		// 	name: "Black Olive",
-		// 	Price: 100,
-		// },
-	];
+
 	const [Type, setType] = useState("Regular");
 	const [amount, setAmount] = useState(0);
 	const [qty, setQty] = useState(1);
@@ -89,9 +30,8 @@ export const PizzaCard = ({ pizza }) => {
 		price: 10,
 	});
 	const [toppingsAmount, setToppingsAmount] = useState(10);
-	const [toppingOption, setToppingOption] = useState({
-		Normal: true,
-	});
+	const [toppingOption, setToppingOption] = useState({ Normal: true });
+	const [toppingNames, setToppingNames] = useState(["Normal"]);
 	const postProduct = {
 		userId: user && user?.data?._id,
 		name: pizza.name,
@@ -100,7 +40,7 @@ export const PizzaCard = ({ pizza }) => {
 		quantity: qty,
 		Type: Type,
 		crust: crust,
-		toppings: toppingOption,
+		toppings: toppingNames,
 		price: amount,
 		total: amount,
 		status: "inprogress",
@@ -122,20 +62,23 @@ export const PizzaCard = ({ pizza }) => {
 		setCrust("");
 		setCrust(event.target.value);
 	};
-	const handleChangeToppings = (event, toppigPrice) => {
+	const handleChangeToppings = (event, toppingName, toppigPrice) => {
 		setToppingOption({
 			...toppingOption,
 			[event.target.name]: event.target.checked,
 		});
 		if (event.target.checked) {
 			setToppingsAmount(toppingsAmount + toppigPrice);
+			setToppingNames([...toppingNames, toppingName]);
 		}
 		if (!event.target.checked) {
 			setToppingsAmount(toppingsAmount - toppigPrice);
+			const tempTopping = toppingNames && toppingNames.filter((topping) => topping !== toppingName);
+			setToppingNames([...tempTopping]);
 		}
-
-		// console.log(toppingsAmount);
 	};
+	console.log(toppingNames);
+
 	const priceCalculation = (prices, CurrentType) => {
 		const Amount = prices
 			.filter((priceCal) => priceCal.variant === CurrentType)
@@ -268,7 +211,9 @@ export const PizzaCard = ({ pizza }) => {
 												control={
 													<Checkbox
 														checked={toppingOption[toppingType.name]}
-														onChange={(event) => handleChangeToppings(event, toppingType.price)}
+														onChange={(event) =>
+															handleChangeToppings(event, toppingType.name, toppingType.price)
+														}
 														name={toppingType.name}
 													/>
 												}

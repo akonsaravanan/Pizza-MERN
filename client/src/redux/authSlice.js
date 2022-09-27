@@ -44,9 +44,8 @@ const authSlice = createSlice({
 		},
 		setUserLogout: (state) => {
 			state.user = null;
-			// localStorage.clear();
-
 			localStorage.removeItem("userPizza-profile");
+			window.location.reload();
 		},
 	},
 	extraReducers: {

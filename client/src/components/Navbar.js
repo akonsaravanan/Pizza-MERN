@@ -15,6 +15,7 @@ import { setUserLogout, setUserLogin } from "../redux/authSlice";
 import { inCart } from "../redux/cartSlice";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import jwt_decode from "jwt-decode";
 
 const Navbar = () => {
 	const [menu, setMenu] = useState(false);
@@ -24,16 +25,16 @@ const Navbar = () => {
 	const [accessIn, setaccessIn] = useState(false);
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
+	console.log(user && user.token);
+	const [timer, setTimer] = useState();
 
-	console.log(user);
 	useEffect(() => {
 		const extUser = localStorage.getItem("userPizza-profile");
 		if (extUser) {
 			setUserLogin(extUser);
+
 			setaccessIn(extUser);
 		}
-
-		console.log(accessIn);
 	}, [accessIn]);
 
 	useEffect(() => {
@@ -46,11 +47,34 @@ const Navbar = () => {
 	const handleLogout = () => {
 		dispatch(setUserLogout());
 		toast.success("Logged out successfully");
-		navigate("/signupin");
-		setaccessIn(false); // navigate("/home");
+		setaccessIn(false);
 	};
+	const timeout = new Date().getSeconds();
+	useEffect(() => {
+		if (user && user.token) {
+			const decodedToken = jwt_decode(user.token);
+			const { exp } = decodedToken;
+			if (exp * 1000 < new Date().getTime()) {
+				navigate("/timeout");
+				dispatch(setUserLogout());
+			}
+		}
+	});
 
-	console.log(quantityState);
+	/* if (user && user.token) {
+		const decodedToken = jwt_decode(user.token);
+		const { exp } = decodedToken;
+		// timer = Date.now() <= exp * 1000;
+		if (Date.now() <= exp * 1000) {
+			setTimer(true);
+			console.log(true, "token is not expired");
+			dispatch(setUserLogout());
+			// navigate("/timeout");
+		} else {
+			setTimer(false);
+			console.log(false, "token is expired");
+		}
+	} */
 	return (
 		<nav id="navBAR" dark bgColor="primary" className={styles.container}>
 			<div className={styles}>
@@ -116,7 +140,7 @@ const Navbar = () => {
 									</a>
 								)}
 							</li> */}
-							{console.log(accessIn)}
+							{/* {console.log(accessIn)} */}
 							{accessIn && (
 								<li className={styles.userIcon}>
 									<span style={{ cursor: "pointer", color: "white" }} onClick={handleLogout}>

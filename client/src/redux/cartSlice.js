@@ -20,7 +20,7 @@ export const addCart = createAsyncThunk(
 export const inCart = createAsyncThunk("carts/incart", async (toast, { rejectWithValue }) => {
 	try {
 		const response = await getInCartItems();
-		console.log(response.data);
+		// console.log(response.data);
 		return response.data;
 	} catch (error) {
 		console.log(error);
